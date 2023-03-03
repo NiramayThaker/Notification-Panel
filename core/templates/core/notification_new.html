@@ -8,18 +8,18 @@
 
         <a href="{% url 'read-all' %}">Mark all as read</a>
         {% for user in notification reversed %}
-        <br>
-        <br>
+            <br>
+            <br>
 
             <br>
             {% if user.read != 0 %}
                 <a href="{% url 'note' user.msg_id %}" style="font-size:x-large;">OPEN</a>
-                <a href="{% url 'note' user.msg_id %}"><br>Read: {{user.read}}<br>Unread: {{user.unread}}</a>
+                <a href="{% url 'note' user.msg_id %}"><br>Read: {{ user.read }}<br>Unread: {{ user.unread }}</a>
             {% endif %}
             <br>
 
-<br>
-<hr>
+            <br>
+            <hr>
 
         {% endfor %}
 
