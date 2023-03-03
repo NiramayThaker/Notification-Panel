@@ -1,0 +1,29 @@
+{% extends 'core/base_new.html' %}
+
+{% block title %}Notification-Page{% endblock title %}
+
+{% block content %}
+
+    <div align="center">
+
+        <a href="{% url 'read-all' %}">Mark all as read</a>
+        {% for user in notification reversed %}
+        <br>
+        <br>
+
+            <br>
+            {% if user.read != 0 %}
+                <a href="{% url 'note' user.msg_id %}" style="font-size:x-large;">OPEN</a>
+                <a href="{% url 'note' user.msg_id %}"><br>Read: {{user.read}}<br>Unread: {{user.unread}}</a>
+            {% endif %}
+            <br>
+
+<br>
+<hr>
+
+        {% endfor %}
+
+
+    </div>
+
+{% endblock content %}
