@@ -37,13 +37,12 @@ def notification_page(request):
 @login_required(login_url='/login')
 def notification(request, pk):
 	notes = UserNotification.objects.get(msg_id=pk)
-	
+
 	notes.read = 1
 	notes.unread = 0
 	notes.save()
 
 	return render(request, 'notification.html')
-
 
 
 @login_required(login_url='/login')
@@ -57,6 +56,16 @@ def read_all(request):
 
 
 @login_required(login_url='/login')
+def unread_all(request):
+	notes = UserNotification.objects.filter(user=request.user)
+	for note in notes:
+		note.read = 0
+		note.unread = 1
+		note.save()
+	return redirect('notification-page')
+
+
+@login_required(login_url='/login')
 def note(request, pk):
 	note = UserNotification.objects.get(msg_id=pk)
 	note.read = 1
@@ -65,4 +74,3 @@ def note(request, pk):
 
 	context = {"note": note}
 	return render(request, 'core/note.html', context=context)
-

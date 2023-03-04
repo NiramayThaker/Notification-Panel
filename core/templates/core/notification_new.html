@@ -7,6 +7,8 @@
     <div align="center">
 
         <a href="{% url 'read-all' %}">Mark all as read</a>
+        <br>
+        <a href="{% url 'unread-all' %}">Mark all as unread</a>
         {% for user in notification reversed %}
             <br>
             <br>
